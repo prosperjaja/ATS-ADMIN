@@ -3,13 +3,27 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Group, Button, TextInput, Select } from "@mantine/core";
 import { AddButton } from "../common/add-button";
 import { createContext, Context } from "react";
+import { useState } from "react";
 
 interface ModalType {
   opened: boolean;
   close: () => void;
 }
 
+const initialValue = {
+  role_title: "",
+  job_course: "",
+  skill_level: "",
+  location: "",
+  job_requirements: "",
+};
+
 export default function AddJob({ opened, close }: ModalType) {
+  const [addJob, setAddjob] = useState(initialValue);
+  const handleSubmit = () => {
+    console.log(addJob);
+    setAddjob(initialValue);
+  };
   return (
     <Modal className="" opened={opened} onClose={close} title="" centered>
       {/* Modal content */}
@@ -27,17 +41,24 @@ export default function AddJob({ opened, close }: ModalType) {
         <section className="flex items-center gap-4">
           <div className="w-[50%]">
             <p>Role Title</p>
-            <TextInput />
+            <TextInput
+              value={addJob.role_title}
+              onChange={(e) =>
+                setAddjob({ ...addJob, role_title: e.target.value })
+              }
+            />
           </div>
           <div className="w-[50%]">
             <p>Job Course</p>
             <Select
               data={[
                 { value: "react", label: "React" },
-                { value: "ng", label: "Angular" },
+                { value: "Angular", label: "Angular" },
                 { value: "svelte", label: "Svelte" },
                 { value: "vue", label: "Vue" },
               ]}
+              value={addJob.job_course}
+              onChange={(value) => setAddjob({ ...addJob, job_course: value })}
             />
           </div>
         </section>
@@ -50,6 +71,8 @@ export default function AddJob({ opened, close }: ModalType) {
                 { value: "Intermediate", label: "Intermediate" },
                 { value: "Advanced", label: "Advanced" },
               ]}
+              value={addJob.skill_level}
+              onChange={(value) => setAddjob({ ...addJob, skill_level: value })}
             />
           </div>
           <div className="w-[50%]">
@@ -61,6 +84,8 @@ export default function AddJob({ opened, close }: ModalType) {
                 { value: "Port harcourt", label: "Port harcourt" },
                 { value: "Ibadan", label: "Ibadan" },
               ]}
+              value={addJob.location}
+              onChange={(value) => setAddjob({ ...addJob, location: value })}
             />
           </div>
         </section>
@@ -71,9 +96,19 @@ export default function AddJob({ opened, close }: ModalType) {
             id=""
             rows={10}
             className="w-full border-1 border-black outline-none"
+            value={addJob.job_requirements}
+            onChange={(e) =>
+              setAddjob({ ...addJob, job_requirements: e.target.value })
+            }
           ></textarea>
         </section>
-        <Button className="w-full py-1 bg-[#38CB89]">Post Job</Button>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          className="w-full py-1 bg-[#38CB89]"
+        >
+          Post Job
+        </Button>
       </main>
     </Modal>
   );

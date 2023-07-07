@@ -2,6 +2,7 @@ import React from "react";
 import { HeaderSetup } from "../dashboard-components/header-setup";
 import { JobsHeader } from "./jobs-header";
 import { JobsDraft } from "./jobs-draft";
+import { JobsUpload } from "./jobs-upload";
 
 export const JobSetup = () => {
   return (
@@ -10,6 +11,7 @@ export const JobSetup = () => {
         <JobsHeader />
       </div>
       <JobsDraft />
+      <JobsUpload />
     </main>
   );
 };
