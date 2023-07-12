@@ -6,7 +6,7 @@ import { AdminHeader } from "@/components/admin-component/admin-header";
 export default function Admin() {
   return (
     <main>
-      <header className="grid grid-cols-[270px_1fr] h-[100vh]">
+      <header className="grid grid-cols-[270px_1fr] h-[100vh] overflow-y-hidden">
         <aside>
           <Aside />
         </aside>

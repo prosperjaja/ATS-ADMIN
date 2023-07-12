@@ -4,8 +4,9 @@ import Login from "./login";
 
 export default function Logout() {
   return (
-    <div>
+    <div onClick={() => localStorage.removeItem("my-user")}>
       <Login />
+      {/* window.location.href = '/login' */}
     </div>
   );
 }

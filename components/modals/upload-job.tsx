@@ -20,12 +20,20 @@ const initialValue = {
 
 export default function AddJob({ opened, close }: ModalType) {
   const [addJob, setAddjob] = useState(initialValue);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(addJob);
     setAddjob(initialValue);
   };
   return (
-    <Modal className="" opened={opened} onClose={close} title="" centered>
+    <Modal
+      className=""
+      opened={opened}
+      onClose={close}
+      title=""
+      size={600}
+      centered
+    >
       {/* Modal content */}
       <main className="flex flex-col gap-4 px-2">
         <div className="flex flex-col gap-2">

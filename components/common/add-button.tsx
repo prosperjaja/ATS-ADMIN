@@ -12,7 +12,7 @@ export const AddButton = ({
     <div>
       <button
         onClick={onClick}
-        className="flex items-center gap-2 bg-[#38CB89] p-1.5 px-[clamp(1.25rem,3vw,2.5rem)] text-[14px] rounded-lg"
+        className="flex items-center gap-2 bg-[#38CB89] py-2.5 px-[clamp(1.25rem,3vw,2.5rem)] text-[14px] rounded-lg"
       >
         <Image src={"/images/Add.png"} alt="add" width={18} height={18} />
         <p className="text-white ">{text}</p>

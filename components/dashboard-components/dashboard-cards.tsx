@@ -39,7 +39,7 @@ const data = [
 
 export const DashboardCards = () => {
   return (
-    <div className=" grid grid-cols-4 gap-[clamp(0.5rem,1.5vw,1rem)]">
+    <div className=" grid grid-cols-4 gap-[clamp(0.5rem,1.5vw,1rem)] ">
       {data.map((item) => {
         const { id, applicants, figure, percentage, style } = item;
         return (

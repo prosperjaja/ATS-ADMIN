@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AdminHeader } from "./admin-header";
 import { ActivityUpdate } from "../dashboard-components/activity-update";
 import Image from "next/image";
 import { AdminDisplayProfile } from "./admin-display-profile";
 import { AdminFilter } from "./admin-filter";
+import { useState } from "react";
 
 export const AdminSetup = () => {
   return (
@@ -13,7 +14,7 @@ export const AdminSetup = () => {
           <div className="w-[45%] ">
             <AdminDisplayProfile />
             {/* ADMIN ACTIVITY */}
-            <article className=" bg-white px-[clamp(0.9rem,2vw,1.875rem)] py-4 h-[45vh] w-full overflow-y-scroll article-scroll">
+            <article className=" bg-white px-[clamp(0.9rem,2vw,1.875rem)] py-4 h-[40vh] w-full overflow-y-scroll article-scroll">
               <h3 className="text-base font-semibold text-[#18181B]">
                 Admin Activities
               </h3>

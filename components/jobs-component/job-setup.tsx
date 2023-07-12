@@ -1,8 +1,9 @@
 import React from "react";
 import { HeaderSetup } from "../dashboard-components/header-setup";
 import { JobsHeader } from "./jobs-header";
-import { JobsDraft } from "./jobs-draft";
+import { AllJobs } from "./all-jobs";
 import { JobsUpload } from "./jobs-upload";
+import JobTabs from "./job-tabs";
 
 export const JobSetup = () => {
   return (
@@ -10,8 +11,8 @@ export const JobSetup = () => {
       <div className="border-b border-[#dddddd] py-[1.17rem]">
         <JobsHeader />
       </div>
-      <JobsDraft />
-      <JobsUpload />
+      {/* <AllJobs /> */}
+      <JobTabs />
     </main>
   );
 };

@@ -103,7 +103,12 @@ const data = [
   },
 ];
 
-export const AllJobsList = () => {
+interface JobsListProps {
+  time?: string;
+  children?: React.ReactNode;
+}
+
+export const AllJobsList = ({ time, children }: JobsListProps) => {
   return (
     <main className="flex flex-col gap-4">
       {data.map((item) => {
@@ -155,7 +160,7 @@ export const AllJobsList = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Link href={"/applications"}>
+                  <Link href={"/application"}>
                     <p className="text-[#38CB89] text-xs underline">
                       {application}
                     </p>
@@ -168,7 +173,8 @@ export const AllJobsList = () => {
               {/* end of the parent flexing div */}
             </article>
             <div className="flex flex-col gap-7">
-              <p className="text-[#948E8E] text-sm">{uploaded}</p>
+              <p className="text-[#948E8E] text-sm">{time}</p>
+              {children}
               <div className="flex items-center gap-5">
                 <Image src={pencil} alt="edit" width={17} height={17} />
                 <Image

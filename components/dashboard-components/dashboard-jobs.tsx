@@ -5,7 +5,7 @@ import { JobListMap } from "./job-list-map";
 export const DashboardJobs = () => {
   return (
     <main className="">
-      <header className="bg-white p-4 rounded-lg h-full w-full">
+      <header className="bg-white p-4 rounded-lg  w-full h-[71.5vh] overflow-y-scroll article-scroll">
         <section className="flex flex-col gap-3">
           <h3 className="text-base text-[#18181B] font-semibold">Jobs</h3>
           <p className="text-sm font-medium text-[#71717A]">

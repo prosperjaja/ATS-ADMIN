@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import {
   Modal,
@@ -6,65 +8,189 @@ import {
   Select,
   TextInput,
   PasswordInput,
+  MultiSelect,
 } from "@mantine/core";
+import FileUplaod from "../common/file-upload";
 
 interface ModalType {
   opened: boolean;
   close: () => void;
 }
 
+const initialValue = {
+  first_name: "",
+  last_name: "",
+  password: "",
+  confirm_password: "",
+  position: "",
+  permission_level: [],
+  username: "",
+  email: "",
+};
+
 export default function AddAdmin({ opened, close }: ModalType) {
+  const [admin, setAdmin] = useState(initialValue);
+  const [error, setError] = useState("");
+  const [adminPermit, setAdminPermit] = useState(null);
+
+  const permission =
+    "https://ats-admin-dashboard.onrender.com/api/permission_level";
+  const url =
+    "https://ats-admin-dashboard.onrender.com/api/ats_admin/create_sub_admin";
+
+  const fetchPermit = async () => {
+    const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
+    try {
+      const response = await fetch(permission, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setAdminPermit(
+        data.reduce((acc, curr) => {
+          acc.push({ label: curr.name, value: curr.id });
+          return acc;
+        }, [])
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPermit();
+  }, []);
+
+  // acc.push({ label: cur.company_address, value: cur.id });
+
+  const handleSubmit = async (e) => {
+    const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
+    e.preventDefault();
+    console.log(admin);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(admin),
+      });
+      const data = await res.json();
+      if (data?.error) {
+        setError(data?.error);
+        return;
+      }
+      setAdmin(data);
+      setAdmin(initialValue);
+      console.log(data);
+      // localStorage.setItem("my-admin", JSON.stringify(data));
+    } catch {
+      console.log("error-response", error);
+    }
+  };
+
   return (
     <>
-      <Modal opened={opened} onClose={close} title="" centered>
+      <Modal opened={opened} onClose={close} size={600} title="" centered>
         {/* Modal content */}
-        <main className="flex flex-col gap-4 px-2">
+        <form className="flex flex-col gap-4 px-2" onSubmit={handleSubmit}>
           <section className="flex items-center gap-4">
             <div className="w-[50%]">
               <p>First Name</p>
-              <TextInput />
+              <TextInput
+                value={admin.first_name}
+                onChange={(e) =>
+                  setAdmin({ ...admin, first_name: e.target.value })
+                }
+              />
             </div>
             <div className="w-[50%]">
               <p>Last Name</p>
-              <TextInput />
+              <TextInput
+                value={admin.last_name}
+                onChange={(e) =>
+                  setAdmin({ ...admin, last_name: e.target.value })
+                }
+              />
             </div>
           </section>
           <section className="flex items-center gap-4">
             <div className="w-[50%]">
               <p>Password</p>
-              <PasswordInput />
+              <PasswordInput
+                value={admin.password}
+                onChange={(e) =>
+                  setAdmin({ ...admin, password: e.target.value })
+                }
+              />
             </div>
             <div className="w-[50%]">
               <p>Confirm Password</p>
-              <PasswordInput />
+              <PasswordInput
+                value={admin.confirm_password}
+                onChange={(e) =>
+                  setAdmin({ ...admin, confirm_password: e.target.value })
+                }
+              />
             </div>
           </section>
           <section className="flex items-center gap-4">
             <div className="w-[50%]">
               <p>Position</p>
-              <TextInput placeholder="FrontEnd" />
+              <Select
+                data={[
+                  { value: "Frontend Developer", label: "Frontend Developer" },
+                  { value: "Product Mnanager", label: "Product Manager" },
+                  {
+                    value: "Mobile Developer",
+                    label: "Mobile Developer",
+                  },
+                  { value: "BackEnd Developer", label: "BackEnd Developer" },
+                ]}
+                onChange={(value) => setAdmin({ ...admin, position: value })}
+              />
             </div>
             <div className="w-[50%]">
               <p>Permission Level</p>
-              <Select
-                data={[
-                  { value: "Content Manager", label: "Content Manager" },
-                  { value: "Member Manager", label: "Member Manager" },
-                  {
-                    value: "Application Manager",
-                    label: "Application Manager",
-                  },
-                  { value: "Assessment Manager", label: "Assessment Manager" },
-                ]}
+              <MultiSelect
+                data={adminPermit}
+                onChange={(value) =>
+                  setAdmin({ ...admin, permission_level: value })
+                }
               />
             </div>
           </section>
-          <section className="w-[50%]">
-            <p>Username</p>
-            <TextInput />
+          <section className="flex items-center gap-4">
+            <div className="w-[50%]">
+              <p>Username</p>
+              <TextInput
+                value={admin.username}
+                onChange={(e) =>
+                  setAdmin({ ...admin, username: e.target.value })
+                }
+              />
+            </div>
+            <div className="w-[50%]">
+              Email
+              <TextInput
+                placeholder="email.com"
+                value={admin.email}
+                onChange={(e) => setAdmin({ ...admin, email: e.target.value })}
+              />
+            </div>
           </section>
-          <Button className="w-full py-1 bg-[#38CB89]">Add Sub admin</Button>
-        </main>
+          <section className="flex justify-center items-center">
+            <FileUplaod />
+          </section>
+          <Button type="submit" className="w-full py-1 bg-[#38CB89]">
+            Add Sub admin
+          </Button>
+        </form>
       </Modal>
     </>
   );

@@ -18,7 +18,7 @@ const data = [
     time: "12m ago",
   },
   {
-    id: 2,
+    id: 3,
     img: "/images/orangefile.svg",
     title: "Assessment Posted",
     text: " Admin 22",
@@ -53,7 +53,7 @@ export const ActivityUpdate = () => {
       {data.map((item) => {
         const { id, img, title, text, time } = item;
         return (
-          <ul key={title} className="rounded-xl pt-6">
+          <ul key={id} className="rounded-xl pt-6">
             <li className="flex items-end justify-between gap-4 border-b border-[#dddddd] pb-4">
               <div className="flex items-center gap-3">
                 <Image src={img} alt={title} width={40} height={40} />

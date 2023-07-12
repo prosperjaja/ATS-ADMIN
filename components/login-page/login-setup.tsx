@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { TextInput, PasswordInput, Checkbox, Button } from "@mantine/core";
 import Link from "next/link";
+import { useRouter } from "next/router";
+// import API from "../../apis";
+import { LUser } from "@/interface";
+import { error } from "console";
+import { headers } from "next/dist/client/components/headers";
 
+const initialValue = {
+  email: "",
+  password: "",
+};
+
+const url = "https://ats-admin-dashboard.onrender.com/api/login";
 export const LoginSetUp = () => {
+  const [user, setUser] = useState(initialValue);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await res.json();
+      setIsLoading(false);
+      if (data?.error) {
+        setError(data?.error);
+        return;
+      }
+      setUser(data);
+      console.log(data);
+      localStorage.setItem("my-user", JSON.stringify(data));
+      push("/dashboard");
+    } catch (error) {
+      setIsLoading(false);
+      console.log("error-response", error);
+    }
+  };
   return (
     <main>
       <section className="bg-[#e5e5e5] flex flex-col gap-3 justify-center items-center h-[100vh]">
@@ -14,16 +56,38 @@ export const LoginSetUp = () => {
             <p className="font-medium">
               Email <sup className="text-red-600">*</sup>
             </p>
-            <TextInput placeholder="email.com" />
+            <TextInput
+              value={user.email}
+              placeholder="email.com"
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+            />
             <p className="font-medium">
               Password <sup className="text-red-600">*</sup>
             </p>
-            <PasswordInput />
+            <PasswordInput
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+            />
             <div className="flex items-center gap-3">
               <Checkbox />
               <span className="font-medium">Remember me</span>
             </div>
-            <Button className="bg-[#38cb89]">Sign In</Button>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              className="bg-[#38cb89]"
+            >
+              Sign In
+              {isLoading ? (
+                <img
+                  src="/images/Rolling-1s-200px.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="ml-3"
+                />
+              ) : null}
+            </Button>
             <div className="text-red-600 flex justify-end mt-2">
               <Link href={"/verify"}>
                 <h3> Forgot password ?</h3>{" "}

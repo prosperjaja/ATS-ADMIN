@@ -7,50 +7,146 @@ import { Button, Group, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AuthModal from "../modals/upload-job";
 import AddJob from "../modals/upload-job";
-
-const data = [
-  {
-    id: 1,
-    img: "/images/Dashboard.png",
-    text: "Dashboard",
-    link: "/dashboard",
-  },
-  {
-    id: 2,
-    img: "/images/Jobs.png",
-    text: "Jobs",
-    link: "./jobs",
-  },
-  {
-    id: 3,
-    img: "/images/Assessments.png",
-    text: "Assessment",
-    link: "/assessment",
-  },
-  {
-    id: 4,
-    img: "/images/Application.png",
-    text: "Application",
-    link: "/application",
-  },
-  { id: 5, img: "/images/Media.png", text: "Media", link: "/media" },
-  { id: 6, img: "/images/Course.png", text: "Course", link: "/course" },
-  { id: 7, img: "/images/Cohort&admin.png", text: "Cohort", link: "/cohort" },
-  {
-    id: 8,
-    img: "/images/Member.png",
-    text: "Member management",
-    link: "member-management",
-  },
-];
-
-const data2 = [
-  { id: 1, img: "/images/Cohort&admin.png", text: "Admin", link: "/admin" },
-  { id: 2, img: "/images/logout.png", text: "Logout", link: "/logout" },
-];
+import {
+  Briefcase,
+  FolderOpen,
+  Home3,
+  LogoutCurve,
+  Note,
+  Notepad2,
+  People,
+  Teacher,
+  UserEdit,
+} from "iconsax-react";
+import { useRouter } from "next/router";
+import clsx from "clsx";
 
 export const Aside = () => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const { pathname, push } = useRouter();
+
+  const data = [
+    {
+      id: 1,
+      // img: <Briefcase size="20" color="#000" className="hover:text-[#FF8A65]" />,
+      img: (
+        <Home3
+          size="20"
+          color="#E1891C"
+          variant={pathname.includes("dashboard") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Dashboard",
+      link: "/dashboard",
+    },
+    {
+      id: 2,
+      img: (
+        <Briefcase
+          size="20"
+          variant={pathname.includes("Briefcase") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Jobs",
+      link: "./jobs",
+    },
+    {
+      id: 3,
+      img: (
+        <Notepad2
+          size="20"
+          variant={pathname.includes("Assessment") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Assessment",
+      link: "#",
+    },
+    {
+      id: 4,
+      img: (
+        <Note
+          size="20"
+          variant={pathname.includes("Application") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Application",
+      link: "/application",
+    },
+    {
+      id: 5,
+      img: (
+        <FolderOpen
+          size="20"
+          variant={pathname.includes("Media") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Media",
+      link: "#",
+    },
+    {
+      id: 6,
+      img: (
+        <Teacher
+          size="20"
+          variant={pathname.includes("Course") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Course",
+      link: "#",
+    },
+    {
+      id: 7,
+      img: (
+        <People
+          size="20"
+          variant={pathname.includes("Cohort") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Cohort",
+      link: "#",
+    },
+    {
+      id: 8,
+      img: (
+        <UserEdit
+          size="20"
+          variant={pathname.includes("Member management") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Member management",
+      link: "#",
+    },
+  ];
+
+  const data2 = [
+    {
+      id: 1,
+      img: (
+        <People
+          size="20"
+          variant={pathname.includes("Admin") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Admin",
+      link: "/admin",
+    },
+    {
+      id: 2,
+      img: (
+        <LogoutCurve
+          size="20"
+          variant={pathname.includes("Logout") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Logout",
+      action: () => {
+        localStorage.removeItem("my-user");
+        push("/login");
+      },
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-8 ">
       {/* AFEX LOGO */}
@@ -72,12 +168,27 @@ export const Aside = () => {
           const { id, img, text, link } = item;
           return (
             <div className="flex items-center gap-3" key={id}>
-              <Image src={img} alt={text} width={20} height={20} />
+              {/* <Image src={img} alt={text} width={20} height={20} /> */}
               <Link href={link}>
-                {" "}
+                {/* {" "}
+                {img}
                 <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
                   {text}
-                </p>
+                </p> */}
+                <div
+                  key={text}
+                  className={clsx(
+                    pathname.includes(link)
+                      ? "text-uacs-ared-7"
+                      : "text-uacs-eneutral-9",
+                    "flex gap-3 items-center"
+                  )}
+                >
+                  <div className=""> {img} </div>
+                  <h2 className="  hover:text-uacs-ared-7 font-medium font-[Switzer] text-[1rem]">
+                    {text}
+                  </h2>
+                </div>
               </Link>
             </div>
           );
@@ -87,15 +198,41 @@ export const Aside = () => {
       <div className="flex flex-col gap-3 px-8">
         <h3 className="text-[#dddddd] font-medium">ADMIN</h3>
         {data2.map((item) => {
-          const { id, img, text, link } = item;
+          const { id, img, text, action, link } = item;
           return (
             <div className="flex items-center gap-3" key={id}>
-              <Image src={img} alt={text} width={20} height={20} />
-              <Link href={link}>
-                <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
-                  {text}
-                </p>
-              </Link>
+              {/* <Image src={img} alt={text} width={20} height={20} /> */}
+              {link ? (
+                <Link
+                  href={link}
+                  className={clsx(
+                    pathname.includes(link)
+                      ? "text-uacs-ared-7"
+                      : "text-uacs-eneutral-9",
+                    "flex gap-3 items-center"
+                  )}
+                >
+                  {img}
+                  <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
+                    {text}
+                  </p>
+                </Link>
+              ) : (
+                <div
+                  onClick={action}
+                  className={clsx(
+                    pathname.includes(link)
+                      ? "text-uacs-ared-7"
+                      : "text-uacs-eneutral-9",
+                    "flex gap-3 items-center"
+                  )}
+                >
+                  {img}
+                  <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
+                    {text}
+                  </p>
+                </div>
+              )}
             </div>
           );
         })}

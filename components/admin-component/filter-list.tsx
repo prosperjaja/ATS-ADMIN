@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const data = [
   {
@@ -40,40 +41,34 @@ const data = [
   },
 ];
 
-export const FilterList = ({ search }) => {
+export const FilterList = ({ search, adminList }) => {
   return (
     <main className="grid grid-cols-2 gap-4 w-full ">
-      {data
-        .filter((item) => {
-          return search.toLowerCase() === ""
-            ? item
-            : item.name.toLowerCase().includes(search);
-        })
-        .map((item) => {
-          const { id, img, name, role } = item;
-          return (
-            <section
-              key={id}
-              className="flex flex-col gap-2 py-[2rem] px-[clamp(1.5rem,4vw,5rem)] bg-[#f5f5f5]"
-            >
-              <Image
-                className="rounded-full mx-auto"
-                src={img}
-                alt=""
-                width={100}
-                height={100}
-              />
-              <div>
-                <h3 className="text-base text-[#4A4C58] font-medium text-center">
-                  {name}
-                </h3>
-                <p className="text-sm text-[#8F9198] font-medium text-center">
-                  {role}
-                </p>
-              </div>
-            </section>
-          );
-        })}
+      {adminList.map((item) => {
+        const { id, img, name, role } = item;
+        return (
+          <section
+            key={id}
+            className="flex flex-col gap-2 py-[2rem] px-[clamp(1.5rem,4vw,5rem)] bg-[#f5f5f5]"
+          >
+            <Image
+              className="rounded-full mx-auto"
+              src={img}
+              alt=""
+              width={100}
+              height={100}
+            />
+            <div>
+              <h3 className="text-base text-[#4A4C58] font-medium text-center">
+                {name}
+              </h3>
+              <p className="text-sm text-[#8F9198] font-medium text-center">
+                {role}
+              </p>
+            </div>
+          </section>
+        );
+      })}
     </main>
   );
 };

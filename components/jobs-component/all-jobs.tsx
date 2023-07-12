@@ -1,14 +1,15 @@
 import React from "react";
 import { AddButton } from "../common/add-button";
-import AddJob from "../modals/upload-job";
 import { useDisclosure } from "@mantine/hooks";
+import AddJob from "../modals/upload-job";
+import { JobsUpload } from "./jobs-upload";
 import Link from "next/link";
 
-export const JobsDraft = () => {
+export const AllJobs = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <head>
+    <header>
       <main className="flex items-center justify-between pt-[3rem] px-[2rem]">
         <section className="flex gap-4 ">
           <div className="flex flex-col gap-2">
@@ -27,6 +28,9 @@ export const JobsDraft = () => {
         <AddButton onClick={open} text="Post a Job" />
         <AddJob opened={opened} close={close} />
       </main>
-    </head>
+      <div>
+        <JobsUpload />
+      </div>
+    </header>
   );
 };
