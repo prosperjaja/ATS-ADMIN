@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AddButton } from "../common/add-button";
 import { useDisclosure } from "@mantine/hooks";
 import AddJob from "../modals/upload-job";
@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export const AllJobs = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [id, setId] = useState(null);
 
   return (
     <header>
@@ -26,10 +27,10 @@ export const AllJobs = () => {
           </div>
         </section>
         <AddButton onClick={open} text="Post a Job" />
-        <AddJob opened={opened} close={close} />
+        <AddJob id={id} opened={opened} close={close} />
       </main>
       <div>
-        <JobsUpload />
+        <JobsUpload open={open} setId={setId} />
       </div>
     </header>
   );

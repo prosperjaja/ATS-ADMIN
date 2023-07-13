@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useDisclosure } from "@mantine/hooks";
+import EditProfilePicture from "../modals/edit-profile-picture";
 
 export const AdminDisplayProfile = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <section>
       <figure className="flex flex-col justify-center items-center gap-4">
@@ -9,7 +13,10 @@ export const AdminDisplayProfile = () => {
           style={{ backgroundImage: `url('/images/Avatar.png')` }}
           className="bg-cover bg-no-repeat bg-top-center h-[clamp(10rem,21vw,20rem)] w-[clamp(10rem,21vw,20rem)] rounded-xl flex items-end justify-end"
         >
-          <div className=" p-2 rounded-full bg-[#38CB89] -mr-[1rem] -mb-[0.5rem]">
+          <div
+            onClick={open}
+            className=" p-2 rounded-full bg-[#38CB89] -mr-[1rem] -mb-[0.5rem] cursor-pointer"
+          >
             <Image
               src={"/images/Pencil.png"}
               alt="edit"
@@ -27,6 +34,7 @@ export const AdminDisplayProfile = () => {
           </p>
         </div>
       </figure>
+      <EditProfilePicture opened={opened} close={close} />
     </section>
   );
 };

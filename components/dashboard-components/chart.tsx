@@ -31,7 +31,9 @@ export const Chart = () => {
             <h3 className="font-semibold text-base ">Export PDF</h3>
           </button>
         </article>
-        <div>{/* <LineBar /> */}</div>
+        <div className="flex items-center justify-center">
+          <LineBar />
+        </div>
       </section>
       {/* ACTIVITIES AND LATEST ARTICLES */}
       <section className="flex gap-2 items-center pt-4">

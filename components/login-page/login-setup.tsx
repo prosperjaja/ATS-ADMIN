@@ -3,6 +3,8 @@ import Image from "next/image";
 import { TextInput, PasswordInput, Checkbox, Button } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import API from "../../apis";
 import { LUser } from "@/interface";
 import { error } from "console";
@@ -42,12 +44,14 @@ export const LoginSetUp = () => {
       localStorage.setItem("my-user", JSON.stringify(data));
       push("/dashboard");
     } catch (error) {
+      toast.error("uh oh, wrong login details!");
       setIsLoading(false);
       console.log("error-response", error);
     }
   };
   return (
     <main>
+      <ToastContainer toastClassName={"CustomToast"} />
       <section className="bg-[#e5e5e5] flex flex-col gap-3 justify-center items-center h-[100vh]">
         <Image src={"/images/AFEX logo 1.svg"} alt="" width={130} height={40} />
         <article className="flex flex-col items-center justify-center gap-2 w-[30rem] py-[2rem] px-[clamp(1rem,3vw,2rem)] bg-white rounded-xl shadow-xl shadow-[0px 51.8664px 76.6208px rgba(193, 194, 198, 0.19)]">
@@ -75,6 +79,13 @@ export const LoginSetUp = () => {
             <Button
               type="submit"
               onClick={handleSubmit}
+              styles={{
+                root: {
+                  "&:hover": {
+                    background: "red",
+                  },
+                },
+              }}
               className="bg-[#38cb89]"
             >
               Sign In

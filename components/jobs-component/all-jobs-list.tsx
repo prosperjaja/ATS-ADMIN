@@ -2,123 +2,132 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const data = [
-  {
-    id: 1,
-    img: "/images/java.svg",
-    role: "Back-end Developer",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 2,
-    img: "",
-    role: "Product Manager",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 3,
-    img: "/images/html.svg",
-    role: "FrontEnd Developer",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 4,
-    img: "",
-    role: "Product Manager",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 5,
-    img: "/images/java.svg",
-    role: "Back-end Developer",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 6,
-    img: "",
-    role: "Product Manager",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-  {
-    id: 7,
-    img: "/images/html.svg",
-    role: "FrontEnd Developer",
-    location: "/images/location.svg",
-    choice: "Remote-Ibadan, Lagos Only",
-    bcase: "/images/briefcase.svg",
-    fulltime: "Full Time",
-    application: "View Applications",
-    assessment: "View Assessments",
-    uploaded: "Uploaded 2days ago",
-    pencil: "/images/green-pencil.svg",
-    trash: "/images/trash.svg",
-  },
-];
+// const data = [
+//   {
+//     id: 1,
+//     img: "/images/java.svg",
+//     role: "Back-end Developer",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 2,
+//     img: "",
+//     role: "Product Manager",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 3,
+//     img: "/images/html.svg",
+//     role: "FrontEnd Developer",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 4,
+//     img: "",
+//     role: "Product Manager",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 5,
+//     img: "/images/java.svg",
+//     role: "Back-end Developer",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 6,
+//     img: "",
+//     role: "Product Manager",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+//   {
+//     id: 7,
+//     img: "/images/html.svg",
+//     role: "FrontEnd Developer",
+//     location: "/images/location.svg",
+//     choice: "Remote-Ibadan, Lagos Only",
+//     bcase: "/images/briefcase.svg",
+//     fulltime: "Full Time",
+//     application: "View Applications",
+//     assessment: "View Assessments",
+//     uploaded: "Uploaded 2days ago",
+//     pencil: "/images/green-pencil.svg",
+//     trash: "/images/trash.svg",
+//   },
+// ];
 
 interface JobsListProps {
   time?: string;
   children?: React.ReactNode;
+  jobListings?: any[];
+  open?: () => void;
+  setId?: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export const AllJobsList = ({ time, children }: JobsListProps) => {
+export const AllJobsList = ({
+  jobListings,
+  time,
+  children,
+  open,
+  setId,
+}: JobsListProps) => {
   return (
     <main className="flex flex-col gap-4">
-      {data.map((item) => {
+      {jobListings?.map((item) => {
         const {
           id,
           img,
           role,
           location,
           choice,
-          fulltime,
+          job_schedule,
           application,
           assessment,
           uploaded,
@@ -134,7 +143,7 @@ export const AllJobsList = ({ time, children }: JobsListProps) => {
             <article className=" flex items-center gap-[clamp(0.8rem,2vw,1.5rem)]">
               {/* animated image */}
               <div className="w-[clamp(2.5rem,6vw,5.25rem)] h-[clamp(2.5rem,6vw,5.25rem)] bg-[rgba(56,203,137,0.10)] rounded-2xl flex justify-center items-center">
-                <Image src={img} alt="" width={50} height={50} />
+                <Image src={"/images/html.svg"} alt="" width={50} height={50} />
               </div>
               {/* parent flexing the briefcase and location and applicants div */}
               <div className="flex flex-col gap-2">
@@ -146,27 +155,32 @@ export const AllJobsList = ({ time, children }: JobsListProps) => {
                   {/* location div */}
                   <div className="flex items-center gap-1">
                     <Image
-                      src={location}
+                      src={"/images/location.svg"}
                       alt="location"
                       width={15}
                       height={15}
                     />
-                    <p className="text-[#948E8E] text-sm">{choice}</p>
+                    <p className="text-[#948E8E] text-sm">{location}</p>
                   </div>
                   {/* briefcase div */}
                   <div className="flex items-center gap-1">
-                    <Image src={bcase} alt="location" width={20} height={20} />
-                    <p className="text-[#948E8E] text-sm">{fulltime}</p>
+                    <Image
+                      src={"/images/briefcase.svg"}
+                      alt="location"
+                      width={20}
+                      height={20}
+                    />
+                    <p className="text-[#948E8E] text-sm">{job_schedule}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Link href={"/application"}>
                     <p className="text-[#38CB89] text-xs underline">
-                      {application}
+                      View application
                     </p>
                   </Link>
                   <p className="text-[#38CB89] text-xs underline">
-                    {assessment}
+                    View Assessments
                   </p>
                 </div>
               </div>
@@ -176,10 +190,19 @@ export const AllJobsList = ({ time, children }: JobsListProps) => {
               <p className="text-[#948E8E] text-sm">{time}</p>
               {children}
               <div className="flex items-center gap-5">
-                <Image src={pencil} alt="edit" width={17} height={17} />
+                <Image
+                  onClick={() => {
+                    setId(id);
+                    open();
+                  }}
+                  src={"/images/green-pencil.svg"}
+                  alt="edit"
+                  width={17}
+                  height={17}
+                />
                 <Image
                   className="cursor-pointer"
-                  src={trash}
+                  src={"/images/trash.svg"}
                   alt="remove"
                   width={17}
                   height={17}

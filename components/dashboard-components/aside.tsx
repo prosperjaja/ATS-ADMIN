@@ -7,6 +7,7 @@ import { Button, Group, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AuthModal from "../modals/upload-job";
 import AddJob from "../modals/upload-job";
+
 import {
   Briefcase,
   FolderOpen,
@@ -25,6 +26,21 @@ export const Aside = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const { pathname, push } = useRouter();
+
+  // const url = `https://ats-admin-dashboard.onrender.com/api/job/${id}/job_delete`;
+
+  // const handleDelete = async () => {
+  //   try {
+  //     const res = await fetch(url, {
+  //       method: "DELETE",
+  //       body: "",
+  //     });
+  //     const data = await res.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const data = [
     {
@@ -169,7 +185,7 @@ export const Aside = () => {
           return (
             <div className="flex items-center gap-3" key={id}>
               {/* <Image src={img} alt={text} width={20} height={20} /> */}
-              <Link href={link}>
+              <Link href={item.link}>
                 {/* {" "}
                 {img}
                 <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
@@ -179,13 +195,13 @@ export const Aside = () => {
                   key={text}
                   className={clsx(
                     pathname.includes(link)
-                      ? "text-uacs-ared-7"
-                      : "text-uacs-eneutral-9",
+                      ? "text-[#E1891C]"
+                      : "text-[#4A4C58]",
                     "flex gap-3 items-center"
                   )}
                 >
                   <div className=""> {img} </div>
-                  <h2 className="  hover:text-uacs-ared-7 font-medium font-[Switzer] text-[1rem]">
+                  <h2 className=" hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
                     {text}
                   </h2>
                 </div>
@@ -207,8 +223,8 @@ export const Aside = () => {
                   href={link}
                   className={clsx(
                     pathname.includes(link)
-                      ? "text-uacs-ared-7"
-                      : "text-uacs-eneutral-9",
+                      ? "text-[#E1891C]"
+                      : "text-[#4A4C58]",
                     "flex gap-3 items-center"
                   )}
                 >
@@ -222,8 +238,8 @@ export const Aside = () => {
                   onClick={action}
                   className={clsx(
                     pathname.includes(link)
-                      ? "text-uacs-ared-7"
-                      : "text-uacs-eneutral-9",
+                      ? "text-[#E1891C]"
+                      : "text-[#4A4C58]",
                     "flex gap-3 items-center"
                   )}
                 >

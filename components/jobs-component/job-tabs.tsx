@@ -6,14 +6,45 @@ import { AddButton } from "../common/add-button";
 import { useDisclosure } from "@mantine/hooks";
 import AddJob from "../modals/upload-job";
 import { UploadButton } from "../common/upload-button";
+import { useEffect, useState } from "react";
 // import {
 //   IconPhoto,
 //   IconMessageCircle,
 //   IconSettings,
 // } from "@tabler/icons-react";
 
+const url = "https://ats-admin-dashboard.onrender.com/api/job/job_list_create";
+
 function JobTabs() {
   const [opened, { open, close }] = useDisclosure(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [jobListings, setJobListings] = useState(null);
+  const [id, setId] = useState(null);
+
+  const jobListingsFetch = async () => {
+    const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
+    try {
+      setIsLoading(true);
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setIsLoading(false);
+      setJobListings(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    jobListingsFetch();
+  }, []);
+
   return (
     <section className="py-5">
       <Tabs color="teal" defaultValue="All Jobs">
@@ -28,7 +59,12 @@ function JobTabs() {
         <Tabs.Panel value="All Jobs" pt="xs">
           <main className="grid grid-cols-[1fr_clamp(13rem,29vw,28.5rem)] gap-4 px-[2rem]">
             <section className=" py-[2rem] mt-2 h-[80vh] overflow-y-scroll article-scroll">
-              <AllJobsList time={"Uploaded 2days ago"} />
+              <AllJobsList
+                setId={setId}
+                open={open}
+                time={"Uploaded 2days ago"}
+                jobListings={jobListings}
+              />
             </section>
             <section className="py-[2rem] mt-2">
               <JobTypes />
@@ -39,7 +75,10 @@ function JobTabs() {
         <Tabs.Panel value="Draft" pt="xs">
           <main className="grid grid-cols-[1fr_clamp(13rem,29vw,28.5rem)] gap-4 px-[2rem]">
             <section className=" py-[2rem] mt-2 h-[80vh] overflow-y-scroll article-scroll">
-              <AllJobsList children={<UploadButton />} />
+              <AllJobsList
+                children={<UploadButton />}
+                jobListings={jobListings}
+              />
             </section>
             <section className="py-[2rem] mt-2">
               <JobTypes />
@@ -47,7 +86,7 @@ function JobTabs() {
           </main>
         </Tabs.Panel>
       </Tabs>
-      <AddJob opened={opened} close={close} />
+      <AddJob opened={opened} id={id} close={close} />
     </section>
   );
 }

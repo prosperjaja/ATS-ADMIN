@@ -7,6 +7,7 @@ import AddAdmin from "../modals/add-admin";
 
 export const AdminFilter = () => {
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const [adminList, setAdminList] = useState();
 
@@ -16,6 +17,7 @@ export const AdminFilter = () => {
   const adminListFetch = async () => {
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
     try {
+      setIsLoading(true);
       const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -24,6 +26,7 @@ export const AdminFilter = () => {
         },
       });
       const data = await res.json();
+      setIsLoading(false);
       setAdminList(data.results);
       // console.log(data);
     } catch (error) {
@@ -56,6 +59,13 @@ export const AdminFilter = () => {
           placeholder="Search admin by name"
         />
       </div>
+      {isLoading ? (
+        <div className="flex justify-center items-center pt-[15rem]">
+          <h1 className="text-gray-400 text-3xl font-semibold">
+            Please hold on...
+          </h1>
+        </div>
+      ) : null}
       <article className="flex justify-center items-center">
         <FilterList search={search} adminList={adminList} />
       </article>
