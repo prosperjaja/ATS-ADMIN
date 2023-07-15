@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { MantineProvider } from "@mantine/core";
-import { ModalsProvider } from "@mantine/modals";
+
 import {
   Modal,
   Group,
@@ -128,124 +127,115 @@ export default function AddJob({ opened, close, id }: ModalType) {
     }
   };
   return (
-    <MantineProvider>
-      <ModalsProvider>
-        <Modal
-          className=""
-          opened={opened}
-          onClose={() => {
-            setAddjob(initialValue);
-            close();
+    <Modal
+      className=""
+      opened={opened}
+      onClose={() => {
+        setAddjob(initialValue);
+        close();
+      }}
+      title=""
+      size={600}
+      centered
+    >
+      {/* Modal content */}
+      <main className="flex flex-col gap-4 px-2">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-lg font-semibold text-[#4A4C58]">Upload Job</h3>
+          <p className="text-[#948E8E] text-sm font-medium">
+            Enter the details of the job
+          </p>
+        </div>
+        <div>
+          <h3 className="text-[#38CB89] text-base ">Job Description</h3>
+          <hr className=" border-1 border-[#D0D5DD] mt-3" />
+        </div>
+        <section className="flex items-center gap-4">
+          <div className="w-[50%]">
+            <p>Role Title</p>
+            <TextInput
+              value={addJob.role}
+              onChange={(e) => setAddjob({ ...addJob, role: e.target.value })}
+            />
+          </div>
+          <div className="w-[50%]">
+            <p>Job Types</p>
+            <Select
+              data={[
+                { value: "On-site", label: "On-site" },
+                { value: "Remote", label: "Remote" },
+                { value: "Hybrid", label: "Hybrid" },
+              ]}
+              value={addJob.job_type}
+              onChange={(value) => setAddjob({ ...addJob, job_type: value })}
+            />
+          </div>
+        </section>
+        <section className="flex items-center gap-4">
+          <div className="w-[50%]">
+            <p>Skill Level</p>
+            <Select
+              data={[
+                { value: "Junior", label: "Junior" },
+                { value: "Mid-level", label: "Mid-level" },
+                { value: "Senior", label: "Senior" },
+              ]}
+              value={addJob.skill_level}
+              onChange={(value) => setAddjob({ ...addJob, skill_level: value })}
+            />
+          </div>
+          <div className="w-[50%]">
+            <p>Location</p>
+            <MultiSelect
+              value={addJob.location}
+              data={newLocation}
+              onChange={(value) => setAddjob({ ...addJob, location: value })}
+            />
+          </div>
+        </section>
+        <section className="w-full">
+          <p>Job Schedule</p>
+          <Select
+            data={[
+              { value: "Full-time", label: "Full-time" },
+              { value: "Project-based", label: "Project-based" },
+            ]}
+            value={addJob.job_schedule}
+            onChange={(value) => setAddjob({ ...addJob, job_schedule: value })}
+          />
+        </section>
+        <p>Job Requirements</p>
+        <section className="border border-[#dddddd]">
+          <textarea
+            name=""
+            id=""
+            rows={10}
+            className="w-full border-1 border-black outline-none"
+            value={addJob.job_requirements}
+            onChange={(e) =>
+              setAddjob({ ...addJob, job_requirements: e.target.value })
+            }
+          ></textarea>
+        </section>
+        <Button
+          type="submit"
+          styles={{
+            root: {
+              "&:hover": {
+                background: "red",
+              },
+            },
           }}
-          title=""
-          size={600}
-          centered
+          onClick={(e) => {
+            if (id) {
+              handleSubmit(e, editUrl, "PUT");
+            } else handleSubmit(e, url, "POST");
+          }}
+          className="w-full py-1 bg-[#38CB89]"
         >
-          {/* Modal content */}
-          <main className="flex flex-col gap-4 px-2">
-            <div className="flex flex-col gap-2">
-              <h3 className="text-lg font-semibold text-[#4A4C58]">
-                Upload Job
-              </h3>
-              <p className="text-[#948E8E] text-sm font-medium">
-                Enter the details of the job
-              </p>
-            </div>
-            <div>
-              <h3 className="text-[#38CB89] text-base ">Job Description</h3>
-              <hr className=" border-1 border-[#D0D5DD] mt-3" />
-            </div>
-            <section className="flex items-center gap-4">
-              <div className="w-[50%]">
-                <p>Role Title</p>
-                <TextInput
-                  value={addJob.role}
-                  onChange={(e) =>
-                    setAddjob({ ...addJob, role: e.target.value })
-                  }
-                />
-              </div>
-              <div className="w-[50%]">
-                <p>Job Types</p>
-                <Select
-                  data={[
-                    { value: "On-site", label: "On-site" },
-                    { value: "Remote", label: "Remote" },
-                    { value: "Hybrid", label: "Hybrid" },
-                  ]}
-                  value={addJob.job_type}
-                  onChange={(value) =>
-                    setAddjob({ ...addJob, job_type: value })
-                  }
-                />
-              </div>
-            </section>
-            <section className="flex items-center gap-4">
-              <div className="w-[50%]">
-                <p>Skill Level</p>
-                <Select
-                  data={[
-                    { value: "Junior", label: "Junior" },
-                    { value: "Mid-level", label: "Mid-level" },
-                    { value: "Senior", label: "Senior" },
-                  ]}
-                  value={addJob.skill_level}
-                  onChange={(value) =>
-                    setAddjob({ ...addJob, skill_level: value })
-                  }
-                />
-              </div>
-              <div className="w-[50%]">
-                <p>Location</p>
-                <MultiSelect
-                  value={addJob.location}
-                  data={newLocation}
-                  onChange={(value) =>
-                    setAddjob({ ...addJob, location: value })
-                  }
-                />
-              </div>
-            </section>
-            <section className="w-full">
-              <p>Job Schedule</p>
-              <Select
-                data={[
-                  { value: "Full-time", label: "Full-time" },
-                  { value: "Project-based", label: "Project-based" },
-                ]}
-                value={addJob.job_schedule}
-                onChange={(value) =>
-                  setAddjob({ ...addJob, job_schedule: value })
-                }
-              />
-            </section>
-            <p>Job Requirements</p>
-            <section className="border border-[#dddddd]">
-              <textarea
-                name=""
-                id=""
-                rows={10}
-                className="w-full border-1 border-black outline-none"
-                value={addJob.job_requirements}
-                onChange={(e) =>
-                  setAddjob({ ...addJob, job_requirements: e.target.value })
-                }
-              ></textarea>
-            </section>
-            <Button
-              type="submit"
-              onClick={(e) => {
-                if (id) {
-                  handleSubmit(e, editUrl, "PUT");
-                } else handleSubmit(e, url, "POST");
-              }}
-              className="w-full py-1 bg-[#38CB89]"
-            >
-              Post Job
-            </Button>
-          </main>
-        </Modal>
-      </ModalsProvider>
-    </MantineProvider>
+          Post Job
+        </Button>
+      </main>
+    </Modal>
   );
 }

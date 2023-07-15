@@ -1,53 +1,34 @@
 import React from "react";
 import Image from "next/image";
-import { title } from "process";
+import { useState, useEffect } from "react";
 
-const data = [
-  {
-    id: 1,
-    img: "/images/greencase.svg",
-    title: "New Job Post",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-  {
-    id: 2,
-    img: "/images/purple-file.svg",
-    title: "New Article Posted",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-  {
-    id: 3,
-    img: "/images/orangefile.svg",
-    title: "Assessment Posted",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-  {
-    id: 4,
-    img: "/images/purple-file.svg",
-    title: "New Article Posted",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-  {
-    id: 5,
-    img: "/images/greencase.svg",
-    title: "New Job Post",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-  {
-    id: 6,
-    img: "/images/orangefile.svg",
-    title: "Assessment Posted",
-    text: " Admin 22",
-    time: "12m ago",
-  },
-];
+const url = "https://ats-admin-dashboard.onrender.com/api/job/activity_log";
 
-export const ActivityUpdate = ({ activity }) => {
+export const AdminActivityUpdate = () => {
+  const [activity, setActivity] = useState(null);
+
+  const activityFetch = async () => {
+    const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setActivity(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    activityFetch();
+  }, []);
+
   return (
     <section>
       {activity?.map((item) => {
@@ -58,7 +39,7 @@ export const ActivityUpdate = ({ activity }) => {
               <div className="flex items-center gap-3">
                 <Image
                   src={"/images/greencase.svg"}
-                  alt={title}
+                  alt={"job"}
                   width={40}
                   height={40}
                 />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -11,6 +11,9 @@ import {
   MultiSelect,
 } from "@mantine/core";
 import FileUplaod from "../common/file-upload";
+import { useGlobalContext } from "@/pages/context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalType {
   opened: boolean;
@@ -32,7 +35,7 @@ export default function AddAdmin({ opened, close }: ModalType) {
   const [admin, setAdmin] = useState(initialValue);
   const [error, setError] = useState("");
   const [adminPermit, setAdminPermit] = useState(null);
-
+  const { setAdminCreated } = useGlobalContext();
   const permission =
     "https://ats-admin-dashboard.onrender.com/api/permission_level";
   const url =
@@ -55,7 +58,6 @@ export default function AddAdmin({ opened, close }: ModalType) {
           return acc;
         }, [])
       );
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -64,8 +66,6 @@ export default function AddAdmin({ opened, close }: ModalType) {
   useEffect(() => {
     fetchPermit();
   }, []);
-
-  // acc.push({ label: cur.company_address, value: cur.id });
 
   const handleSubmit = async (e) => {
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
@@ -86,10 +86,11 @@ export default function AddAdmin({ opened, close }: ModalType) {
         return;
       }
       setAdmin(data);
+      setAdminCreated(true);
       setAdmin(initialValue);
       console.log(data);
-      // localStorage.setItem("my-admin", JSON.stringify(data));
     } catch {
+      toast.error("uh oh, wrong login details!");
       console.log("error-response", error);
     }
   };
@@ -97,7 +98,7 @@ export default function AddAdmin({ opened, close }: ModalType) {
   return (
     <>
       <Modal opened={opened} onClose={close} size={600} title="" centered>
-        {/* Modal content */}
+        <ToastContainer toastClassName={"CustomToast"} />
         <form className="flex flex-col gap-4 px-2" onSubmit={handleSubmit}>
           <section className="flex items-center gap-4">
             <div className="w-[50%]">
@@ -145,12 +146,12 @@ export default function AddAdmin({ opened, close }: ModalType) {
               <Select
                 data={[
                   { value: "Frontend Developer", label: "Frontend Developer" },
-                  { value: "Product Mnanager", label: "Product Manager" },
+                  { value: "Product Manager", label: "Product Manager" },
                   {
                     value: "Mobile Developer",
                     label: "Mobile Developer",
                   },
-                  { value: "BackEnd Developer", label: "BackEnd Developer" },
+                  { value: "Backend Developer", label: "Backend Developer" },
                 ]}
                 onChange={(value) => setAdmin({ ...admin, position: value })}
               />
@@ -158,7 +159,7 @@ export default function AddAdmin({ opened, close }: ModalType) {
             <div className="w-[50%]">
               <p>Permission Level</p>
               <MultiSelect
-                data={adminPermit}
+                data={adminPermit ?? []}
                 onChange={(value) =>
                   setAdmin({ ...admin, permission_level: value })
                 }
@@ -184,10 +185,20 @@ export default function AddAdmin({ opened, close }: ModalType) {
               />
             </div>
           </section>
-          <section className="flex justify-center items-center">
+          {/* <section className="flex justify-center items-center">
             <FileUplaod />
-          </section>
-          <Button type="submit" className="w-full py-1 bg-[#38CB89]">
+          </section> */}
+          <Button
+            type="submit"
+            styles={{
+              root: {
+                "&:hover": {
+                  background: "red",
+                },
+              },
+            }}
+            className="w-full py-1 bg-[#38CB89]"
+          >
             Add Sub admin
           </Button>
         </form>

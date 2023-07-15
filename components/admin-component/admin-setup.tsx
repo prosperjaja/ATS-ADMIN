@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AdminDisplayProfile } from "./admin-display-profile";
 import { AdminFilter } from "./admin-filter";
 import { useState } from "react";
+import { AdminActivityUpdate } from "./admin-activity-update";
 
 export const AdminSetup = () => {
   return (
@@ -18,7 +19,7 @@ export const AdminSetup = () => {
               <h3 className="text-base font-semibold text-[#18181B]">
                 Admin Activities
               </h3>
-              <ActivityUpdate />
+              <AdminActivityUpdate />
             </article>
           </div>
           <div className="w-[55%] px-[clamp(2.5rem,6vw,5rem)]">

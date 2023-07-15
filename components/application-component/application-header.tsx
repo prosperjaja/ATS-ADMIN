@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import NotificationPop from "../modals/notification-pop";
+import { useGlobalContext } from "@/pages/context";
 
 export const ApplicationHeader = () => {
+  const { notifyNumber } = useGlobalContext();
+
   return (
     <main>
       <header className="flex items-center justify-between px-8">
@@ -12,13 +16,11 @@ export const ApplicationHeader = () => {
         </div>
         {/* NOTIFICATION AND AVATAR */}
         <div className="flex items-center gap-6">
-          <div>
-            <Image
-              src={"/images/notification.png"}
-              alt="notification"
-              width={25}
-              height={25}
-            />
+          <div className="cursor-pointer relative">
+            <h2 className="text-white rounded-full px-2 py-1 font-bold bg-red-600 absolute text-[12px] left-4 top-[-7px]">
+              {notifyNumber.length}
+            </h2>
+            <NotificationPop />
           </div>
           <div>
             <Image

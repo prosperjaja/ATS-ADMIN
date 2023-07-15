@@ -1,8 +1,9 @@
 import React from "react";
 import { Aside } from "@/components/dashboard-components/aside";
 import { ApplicationSetup } from "@/components/application-component/application-setup";
+import withAuth from "./protect";
 
-export default function Applications() {
+export function Applications() {
   return (
     <main>
       <header className="grid grid-cols-[270px_1fr] h-[100vh]">
@@ -16,3 +17,5 @@ export default function Applications() {
     </main>
   );
 }
+
+export default withAuth(Applications);

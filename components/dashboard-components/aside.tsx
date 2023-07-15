@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { AddButton } from "../common/add-button";
 import Link from "next/link";
-import { link } from "fs";
+// import { link } from "fs";
 import { Button, Group, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AuthModal from "../modals/upload-job";
@@ -27,25 +27,9 @@ export const Aside = () => {
 
   const { pathname, push } = useRouter();
 
-  // const url = `https://ats-admin-dashboard.onrender.com/api/job/${id}/job_delete`;
-
-  // const handleDelete = async () => {
-  //   try {
-  //     const res = await fetch(url, {
-  //       method: "DELETE",
-  //       body: "",
-  //     });
-  //     const data = await res.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const data = [
     {
       id: 1,
-      // img: <Briefcase size="20" color="#000" className="hover:text-[#FF8A65]" />,
       img: (
         <Home3
           size="20"
@@ -163,6 +147,24 @@ export const Aside = () => {
     },
   ];
 
+  const data3 = [
+    {
+      id: 2,
+      img: (
+        <LogoutCurve
+          size="20"
+          variant={pathname.includes("Logout") ? "Bold" : "Outline"}
+        />
+      ),
+      text: "Logout",
+      action: () => {
+        localStorage.removeItem("my-user");
+        push("/login");
+      },
+    },
+  ];
+
+  const user = JSON.parse(localStorage.getItem("my-user"));
   return (
     <div className="flex flex-col gap-8 ">
       {/* AFEX LOGO */}
@@ -184,13 +186,7 @@ export const Aside = () => {
           const { id, img, text, link } = item;
           return (
             <div className="flex items-center gap-3" key={id}>
-              {/* <Image src={img} alt={text} width={20} height={20} /> */}
               <Link href={item.link}>
-                {/* {" "}
-                {img}
-                <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
-                  {text}
-                </p> */}
                 <div
                   key={text}
                   className={clsx(
@@ -211,47 +207,62 @@ export const Aside = () => {
         })}
       </div>
       {/* SECOND PART OF ASIDE NAVIGATIONS */}
+
       <div className="flex flex-col gap-3 px-8">
         <h3 className="text-[#dddddd] font-medium">ADMIN</h3>
-        {data2.map((item) => {
-          const { id, img, text, action, link } = item;
-          return (
-            <div className="flex items-center gap-3" key={id}>
-              {/* <Image src={img} alt={text} width={20} height={20} /> */}
-              {link ? (
-                <Link
-                  href={link}
-                  className={clsx(
-                    pathname.includes(link)
-                      ? "text-[#E1891C]"
-                      : "text-[#4A4C58]",
-                    "flex gap-3 items-center"
+        {user.role === "is_superadmin"
+          ? data2.map((item) => {
+              const { id, img, text, action, link } = item;
+              return (
+                <div className="flex items-center gap-3" key={id}>
+                  {/* <Image src={img} alt={text} width={20} height={20} /> */}
+                  {link ? (
+                    <Link
+                      href={link}
+                      className={clsx(
+                        pathname.includes(link)
+                          ? "text-[#E1891C]"
+                          : "text-[#4A4C58]",
+                        "flex gap-3 items-center"
+                      )}
+                    >
+                      {img}
+                      <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
+                        {text}
+                      </p>
+                    </Link>
+                  ) : (
+                    <div
+                      onClick={action}
+                      className={clsx(
+                        pathname.includes(link)
+                          ? "text-[#E1891C]"
+                          : "text-[#4A4C58]",
+                        "flex gap-3 items-center"
+                      )}
+                    >
+                      {img}
+                      <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
+                        {text}
+                      </p>
+                    </div>
                   )}
-                >
-                  {img}
-                  <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
-                    {text}
-                  </p>
-                </Link>
-              ) : (
-                <div
-                  onClick={action}
-                  className={clsx(
-                    pathname.includes(link)
-                      ? "text-[#E1891C]"
-                      : "text-[#4A4C58]",
-                    "flex gap-3 items-center"
-                  )}
-                >
-                  {img}
-                  <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
-                    {text}
-                  </p>
                 </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            })
+          : data3.map((item) => {
+              const { id, img, text, action } = item;
+              return (
+                <div className="flex items-center gap-3" key={id}>
+                  <div onClick={action} className="text-[#E1891C]">
+                    {img}
+                    <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <AddJob opened={opened} close={close} />
     </div>

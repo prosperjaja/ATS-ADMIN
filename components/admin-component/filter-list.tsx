@@ -1,21 +1,31 @@
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useDisclosure } from "@mantine/hooks";
+import AdminDelete from "../modals/admin-delete";
+import { useGlobalContext } from "@/pages/context";
 
-export const FilterList = ({ search, adminList }) => {
+export const FilterList = ({ adminList }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [id, setId] = useState(null);
+  const { searchName } = useGlobalContext();
+
+  useEffect(() => {
+    console.log(searchName);
+  }, [searchName]);
+
   return (
-    <main className="grid grid-cols-2 gap-4 w-full h-[70vh] overflow-y-scroll article-scroll">
+    <main className="grid grid-cols-2 gap-4 w-full overflow-auto article-scroll">
       {adminList
         ?.filter((item) => {
-          return search.toLowerCase() === ""
+          return searchName.toLowerCase() === ""
             ? item
-            : item.full_name.toLowerCase().includes(search);
+            : item.full_name.toLowerCase().includes(searchName);
         })
-        .map((item) => {
-          // const { detail-url, email, fullname, image_URL, permission_level, position } = item;
+        ?.map((item) => {
           return (
             <section
-              key={item.full_name}
+              key={item.id}
               className="flex flex-col gap-2 py-[2rem] px-[clamp(1.5rem,4vw,5rem)] bg-[#f5f5f5]"
             >
               <Image
@@ -40,8 +50,14 @@ export const FilterList = ({ search, adminList }) => {
                   alt="remove"
                   width={20}
                   height={20}
+                  onClick={() => {
+                    setId(id);
+                    console.log(id);
+                    open();
+                  }}
                 />
               </button>
+              <AdminDelete opened={opened} close={close} id={id} />
             </section>
           );
         })}

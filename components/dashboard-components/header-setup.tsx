@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { Head } from "../common/head";
+import { useDisclosure } from "@mantine/hooks";
+import Notification from "../modals/job-particular";
+import NotificationPop from "../modals/notification-pop";
+import { useGlobalContext } from "@/pages/context";
+import FilterPopover from "../modals/filter-popover";
 
 export const HeaderSetup = ({
   name,
@@ -11,6 +16,9 @@ export const HeaderSetup = ({
   text?: string;
   img?: string;
 }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const { notifyNumber } = useGlobalContext();
+
   return (
     <div>
       <section>
@@ -26,13 +34,11 @@ export const HeaderSetup = ({
           </div>
           {/* NOTIFICATION AND AVATAR */}
           <div className="flex items-center gap-6">
-            <div>
-              <Image
-                src={"/images/notification.png"}
-                alt="notification"
-                width={25}
-                height={25}
-              />
+            <div className="cursor-pointer relative">
+              <h2 className="text-white rounded-full px-2 py-1 font-bold bg-red-600 absolute text-[12px] left-4 top-[-7px]">
+                {notifyNumber.length}
+              </h2>
+              <NotificationPop />
             </div>
             <div>
               <Image
@@ -46,20 +52,13 @@ export const HeaderSetup = ({
           </div>
         </header>
         <div className="flex items-center gap-2 pt-7">
-          <button className="flex items-center border border-[#dddddd] px-3 py-1 rounded-md gap-2">
-            <Image
-              src={"/images/Filter.png"}
-              alt="Filter"
-              width={20}
-              height={20}
-            />
-            <span className="text-[0.9rem] text-[#252C32]">Filter Cycle</span>
-          </button>
+          <FilterPopover />
           <p className="text-[#948E8E] text-[0.9rem]">
             -Displaying logs for Cycle 2
           </p>
         </div>
       </section>
+      {/* <Notification opened={opened} close={close} /> */}
     </div>
   );
 };

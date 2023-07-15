@@ -2,8 +2,9 @@ import React from "react";
 import { Aside } from "@/components/dashboard-components/aside";
 import { AdminSetup } from "@/components/admin-component/admin-setup";
 import { AdminHeader } from "@/components/admin-component/admin-header";
+import withAuth from "./protect";
 
-export default function Admin() {
+export function Admin() {
   return (
     <main>
       <header className="grid grid-cols-[270px_1fr] h-[100vh] overflow-y-hidden">
@@ -20,3 +21,4 @@ export default function Admin() {
     </main>
   );
 }
+export default withAuth(Admin);

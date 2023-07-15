@@ -2,6 +2,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Group, Button, FileInput } from "@mantine/core";
 import FileUplaod from "../common/file-upload";
 import { useState } from "react";
+import { Gallery } from "iconsax-react";
 
 interface ModalType {
   opened: boolean;
@@ -46,15 +47,23 @@ function EditProfilePicture({ opened, close }: ModalType) {
         centered
       >
         <section>
-          <div className="py-8">
+          <div className="py-8 relative">
+            <Gallery color="#ccc" className="absolute left-20 top-[2.4rem]" />
             <FileInput onChange={(value) => setImage(value)} />
           </div>
           <Button
             className="py-2 px-12 bg-[#38CB89] flex justify-center items-center mx-auto my-4"
             type="submit"
+            styles={{
+              root: {
+                "&:hover": {
+                  background: "red",
+                },
+              },
+            }}
             onClick={handleSubmit}
           >
-            Upload
+            Upload Image
           </Button>
         </section>
       </Modal>

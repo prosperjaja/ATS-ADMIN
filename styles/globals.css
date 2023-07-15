@@ -202,6 +202,10 @@ body::-webkit-scrollbar {
   font-family: "Switzer";
 }
 
+.td {
+  padding-block: 20px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

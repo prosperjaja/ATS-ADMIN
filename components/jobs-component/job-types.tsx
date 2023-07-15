@@ -1,7 +1,34 @@
 import React from "react";
 import { Checkbox } from "@mantine/core";
+import { useState } from "react";
+
+const initialValue = {
+  keyword: "",
+  Location: "",
+};
+
+const url = "https://ats-admin-dashboard.onrender.com/api/job/job_list_create";
 
 export const JobTypes = () => {
+  const [search, setSearch] = useState(initialValue);
+
+  const handleFilter = async () => {
+    const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setSearch(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main>
       <article className="bg-white rounded-xl px-[2rem] py-8">
@@ -20,12 +47,20 @@ export const JobTypes = () => {
               className="border border-[#D0D5DD] py-3 w-full rounded-lg px-2 outline-none"
               type="text"
               placeholder="Enter Keyword"
+              value={search.keyword}
+              onChange={(e) =>
+                setSearch({ ...search, keyword: e.target.value })
+              }
             />
             <p className="text-[#252735] text-sm font-medium">Location</p>
             <input
               className="border border-[#D0D5DD] py-3 w-full rounded-lg px-2 outline-none"
               type="text"
               placeholder="Enter Location"
+              value={search.Location}
+              onChange={(e) =>
+                setSearch({ ...search, Location: e.target.value })
+              }
             />
           </div>
           {/* checkboxes */}
@@ -105,7 +140,10 @@ export const JobTypes = () => {
             </li>
           </ul>
         </section>
-        <button className="w-full py-4 bg-[#38CB89] text-[clamp(0.5rem,1.5vw,1.1rem)] font-semibold text-white rounded-lg">
+        <button
+          onClick={handleFilter}
+          className="w-full py-4 bg-[#38CB89] text-[clamp(0.5rem,1.5vw,1.1rem)] font-semibold text-white rounded-lg"
+        >
           Apply Filters
         </button>
       </article>

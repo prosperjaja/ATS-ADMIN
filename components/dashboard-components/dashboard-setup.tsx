@@ -6,7 +6,7 @@ import { DashboardWrap } from "@/components/dashboard-components/dashboard-wrap"
 import { useState, useEffect } from "react";
 
 export const DashboardSetup = () => {
-  const [user, setUser] = useState({ first_name: "" });
+  const [user, setUser] = useState({ first_name: "", profile_picture: "" });
 
   useEffect(() => {
     if (localStorage.getItem("my-user")) {
@@ -20,7 +20,7 @@ export const DashboardSetup = () => {
       <HeaderSetup
         name={`Hello ${user.first_name}`}
         text="Take a look at today's activity"
-        img="/images/Avatar.png"
+        img={`/images/Avatar.png`}
       />
       <div>
         <DashboardCards />

@@ -30,7 +30,7 @@ export const AllJobs = () => {
         <AddJob id={id} opened={opened} close={close} />
       </main>
       <div>
-        <JobsUpload open={open} setId={setId} />
+        <JobsUpload id={id} open={open} setId={setId} />
       </div>
     </header>
   );

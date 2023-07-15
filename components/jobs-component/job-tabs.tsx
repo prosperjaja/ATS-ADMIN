@@ -1,4 +1,4 @@
-import { Tabs } from "@mantine/core";
+import { LoadingOverlay, Tabs } from "@mantine/core";
 import { AllJobsList } from "./all-jobs-list";
 import { JobTypes } from "./job-types";
 import { JobsHeader } from "./jobs-header";
@@ -38,6 +38,7 @@ function JobTabs() {
       setJobListings(data.results);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -64,6 +65,7 @@ function JobTabs() {
                 open={open}
                 time={"Uploaded 2days ago"}
                 jobListings={jobListings}
+                id={id}
               />
             </section>
             <section className="py-[2rem] mt-2">
@@ -75,10 +77,9 @@ function JobTabs() {
         <Tabs.Panel value="Draft" pt="xs">
           <main className="grid grid-cols-[1fr_clamp(13rem,29vw,28.5rem)] gap-4 px-[2rem]">
             <section className=" py-[2rem] mt-2 h-[80vh] overflow-y-scroll article-scroll">
-              <AllJobsList
-                children={<UploadButton />}
-                jobListings={jobListings}
-              />
+              <AllJobsList jobListings={jobListings} id={id}>
+                <UploadButton />
+              </AllJobsList>
             </section>
             <section className="py-[2rem] mt-2">
               <JobTypes />
@@ -87,6 +88,7 @@ function JobTabs() {
         </Tabs.Panel>
       </Tabs>
       <AddJob opened={opened} id={id} close={close} />
+      <LoadingOverlay visible={isLoading} />
     </section>
   );
 }

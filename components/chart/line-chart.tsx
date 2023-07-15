@@ -56,7 +56,27 @@ const options = {
 export const LineBar = () => {
   return (
     <section className="!w-[clamp(21.87rem,44vw,43.75rem)]">
-      <Line options={options} data={data} />
+      <Line
+        options={{
+          ...options,
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false,
+              },
+            },
+            y: {
+              display: false,
+              stacked: true,
+              grid: {
+                display: false,
+              },
+            },
+          },
+        }}
+        data={data}
+      />
     </section>
   );
 };
