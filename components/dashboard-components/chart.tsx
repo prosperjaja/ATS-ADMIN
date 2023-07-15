@@ -34,14 +34,14 @@ export const Chart = () => {
   return (
     <main>
       {/* THE DASHBOARD CHART */}
-      <section className=" py-2 px-[clamp(0.9rem,2vw,1.5rem)] rounded-lg bg-white min-h-[30vh] flex flex-col gap-4 justify-between">
+      <section className=" py-2 px-[clamp(0.9rem,2vw,1.5rem)] rounded-lg bg-white min-h-[30vh] flex flex-col gap-[clamp(0.5rem,1.2vw,1rem)] justify-between">
         {" "}
         <article className="flex items-center justify-between">
           <h2 className="text-base font-semibold">Applications</h2>
 
           <button className="flex items-center gap-2 border-2 border-[#F5F5F5] p-2 rounded-md">
             <Image src={"/images/copy.svg"} alt="file" width={20} height={20} />
-            <h3 className="font-semibold text-base ">Export PDF</h3>
+            <h3 className="font-semibold text-base">Export PDF</h3>
           </button>
         </article>
         <div className="flex items-center justify-center">

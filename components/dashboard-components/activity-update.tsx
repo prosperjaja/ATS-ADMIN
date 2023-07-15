@@ -51,10 +51,9 @@ export const ActivityUpdate = ({ activity }) => {
   return (
     <section>
       {activity?.map((item) => {
-        // const { id, img, title, text, time } = item;
         return (
           <ul key={item.id} className="rounded-xl pt-6">
-            <li className="flex items-end justify-between gap-4 border-b border-[#dddddd] pb-4">
+            <li className="flex items-end justify-between gap-[clamp(0.5rem,1.2vw,1rem)] border-b border-[#dddddd] pb-4">
               <div className="flex items-center gap-3">
                 <Image
                   src={"/images/greencase.svg"}

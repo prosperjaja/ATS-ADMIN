@@ -49,15 +49,24 @@ function ApplicationTabs() {
         <Tabs.Tab value="rejected">Rejected</Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel className="px-8 " value="applications" pt="xs">
-        <ApplicationTable />
-      </Tabs.Panel>
-
-      <Tabs.Panel value="pending" pt="xs">
+      <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
+        value="applications"
+        pt="xs"
+      >
         <ApplicationTable />
       </Tabs.Panel>
 
       <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
+        value="pending"
+        pt="xs"
+      >
+        <ApplicationTable />
+      </Tabs.Panel>
+
+      <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
         onClick={() => setParams("shortlisted")}
         value="shortlist"
         pt="xs"
@@ -65,16 +74,23 @@ function ApplicationTabs() {
         <ApplicationContdTable tableContent={tableContent} />
       </Tabs.Panel>
       <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
         onClick={() => setParams("interviewed")}
         value="interview"
         pt="xs"
       >
         <ApplicationContdTable tableContent={tableContent} />
       </Tabs.Panel>
-      <Tabs.Panel onClick={() => setParams("hired")} value="hired" pt="xs">
+      <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
+        onClick={() => setParams("hired")}
+        value="hired"
+        pt="xs"
+      >
         <ApplicationTable />
       </Tabs.Panel>
       <Tabs.Panel
+        className="px-8 h-[78vh] overflow-auto"
         onClick={() => setParams("rejected")}
         value="rejected"
         pt="xs"

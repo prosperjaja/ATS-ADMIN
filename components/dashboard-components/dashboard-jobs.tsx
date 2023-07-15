@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { JobListMap } from "./job-list-map";
 import { LoadingOverlay } from "@mantine/core";
+import Link from "next/link";
 
 const url = "https://ats-admin-dashboard.onrender.com/api/job/days_ago_jobs";
 
@@ -75,9 +76,11 @@ export const DashboardJobs = () => {
         <section className="py-6 h-[58.5vh] overflow-y-scroll article-scroll">
           <JobListMap timeFrame={timeFrame} />
           <div className="flex items-center  hover:cursor-pointer ">
-            <h3 className=" text-[#A1A1AA] font-medium hover:text-[#000] p-2">
-              SEE ALL JOBS
-            </h3>
+            <Link href={"/jobs"}>
+              <h3 className=" text-[#A1A1AA] font-medium hover:text-[#000] p-2">
+                SEE ALL JOBS
+              </h3>
+            </Link>
             <Image
               src={"/images/cheveron-right.svg"}
               alt=">"

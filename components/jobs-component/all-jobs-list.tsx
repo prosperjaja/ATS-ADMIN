@@ -190,9 +190,11 @@ export const AllJobsList = ({
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <p className="text-[#38CB89] text-xs underline">
-                        View application
-                      </p>
+                      <Link href={"/application"}>
+                        <p className="text-[#38CB89] text-xs underline">
+                          View application
+                        </p>
+                      </Link>
                       <p className="text-[#38CB89] text-xs underline">
                         View Assessments
                       </p>
@@ -213,6 +215,7 @@ export const AllJobsList = ({
                       alt="edit"
                       width={17}
                       height={17}
+                      className="cursor-pointer"
                     />
                     <Image
                       onClick={() => {

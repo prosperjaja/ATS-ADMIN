@@ -44,7 +44,7 @@ function NotificationPop() {
         </div>
       </Popover.Target>
       <Popover.Dropdown className="absolute right-[20px]">
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-3 h-[400px] overflow-auto article-scroll">
           <h2 className="text-base font-bold text-[#18181B]">Notification</h2>
           {notification?.map((items) => {
             return (
