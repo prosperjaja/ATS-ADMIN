@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import AdminDelete from "../modals/admin-delete";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 
 export const FilterList = ({ adminList }) => {
   const [opened, { open, close }] = useDisclosure(false);

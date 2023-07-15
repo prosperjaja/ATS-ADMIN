@@ -1,4 +1,4 @@
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 import clsx from "clsx";
 import React, { useContext } from "react";
 

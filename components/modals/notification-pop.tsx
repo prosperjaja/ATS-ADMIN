@@ -1,4 +1,4 @@
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 import { Popover, Text, Button } from "@mantine/core";
 import Image from "next/image";
 import { useState, useEffect } from "react";

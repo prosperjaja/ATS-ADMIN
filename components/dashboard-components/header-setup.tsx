@@ -4,7 +4,7 @@ import { Head } from "../common/head";
 import { useDisclosure } from "@mantine/hooks";
 import Notification from "../modals/job-particular";
 import NotificationPop from "../modals/notification-pop";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 import FilterPopover from "../modals/filter-popover";
 
 export const HeaderSetup = ({

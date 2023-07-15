@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 import NotificationPop from "../modals/notification-pop";
 
 export const AdminHeader = () => {

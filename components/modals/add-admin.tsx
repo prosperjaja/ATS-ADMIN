@@ -11,7 +11,7 @@ import {
   MultiSelect,
 } from "@mantine/core";
 import FileUplaod from "../common/file-upload";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

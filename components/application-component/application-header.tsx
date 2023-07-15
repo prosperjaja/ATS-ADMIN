@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import NotificationPop from "../modals/notification-pop";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 
 export const ApplicationHeader = () => {
   const { notifyNumber } = useGlobalContext();

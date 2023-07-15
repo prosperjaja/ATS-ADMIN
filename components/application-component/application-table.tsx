@@ -2,7 +2,7 @@ import { Checkbox, Table } from "@mantine/core";
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 
 const data = [
   {

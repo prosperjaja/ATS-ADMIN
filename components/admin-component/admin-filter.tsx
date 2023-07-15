@@ -5,7 +5,7 @@ import { FilterList } from "./filter-list";
 import { useDisclosure } from "@mantine/hooks";
 import AddAdmin from "../modals/add-admin";
 import { createContext } from "react";
-import { useGlobalContext } from "@/pages/context";
+import { useGlobalContext } from "@/components/common/context";
 
 interface AdminContext {
   id: number;
