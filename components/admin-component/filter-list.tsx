@@ -31,7 +31,7 @@ export const FilterList = ({ adminList }) => {
               >
                 <Image
                   className="rounded-full mx-auto"
-                  src={""}
+                  src={"/images/Avatar.png"}
                   alt=""
                   width={100}
                   height={100}

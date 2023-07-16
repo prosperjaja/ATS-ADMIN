@@ -139,6 +139,8 @@ export const AllJobsList = ({
               location,
               choice,
               job_schedule,
+              job_type,
+              uploaded_time,
               application,
               assessment,
               uploaded,
@@ -187,6 +189,7 @@ export const AllJobsList = ({
                           height={20}
                         />
                         <p className="text-[#948E8E] text-sm">{job_schedule}</p>
+                        <p className="text-[#948E8E] text-sm">{job_type}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -203,7 +206,9 @@ export const AllJobsList = ({
                   {/* end of the parent flexing div */}
                 </article>
                 <div className="flex flex-col gap-7">
-                  <p className="text-[#948E8E] text-sm">{time}</p>
+                  <p className="text-[#948E8E] text-sm">
+                    Uploaded {uploaded_time}
+                  </p>
                   {children}
                   <div className="flex items-center gap-5">
                     <Image

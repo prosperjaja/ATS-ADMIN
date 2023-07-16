@@ -1,4 +1,4 @@
-import { Tabs } from "@mantine/core";
+import { LoadingOverlay, Tabs } from "@mantine/core";
 import { ApplicationTable } from "./application-table";
 import { useState, useEffect } from "react";
 import { ApplicationContdTable } from "./application-contd-table";
@@ -8,9 +8,10 @@ const url =
 
 function ApplicationTabs() {
   const [tableContent, setTableContent] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchParams = async (query) => {
-    //  setLoading(true);
+    setLoading(true);
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
     try {
       const formData = new FormData();
@@ -25,9 +26,9 @@ function ApplicationTabs() {
       const data = await res.json();
       console.log(data);
       setTableContent(data);
-      //  setLoading(false);
+      setLoading(false);
     } catch (error) {
-      //  setLoading(false);
+      setLoading(false);
       console.log(error);
     }
   };
@@ -97,6 +98,7 @@ function ApplicationTabs() {
       >
         <ApplicationContdTable tableContent={tableContent} />
       </Tabs.Panel>
+      <LoadingOverlay visible={loading} />
     </Tabs>
   );
 }
