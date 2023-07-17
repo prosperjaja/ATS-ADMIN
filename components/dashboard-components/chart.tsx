@@ -50,7 +50,7 @@ export const Chart = () => {
       </section>
       {/* ACTIVITIES AND LATEST ARTICLES */}
       <section className="flex gap-2 items-center pt-4">
-        <article className="border border-[#dddddd] bg-white rounded-lg px-[clamp(0.9rem,2vw,1.875rem)] py-4 h-[40vh] w-full overflow-y-scroll article-scroll">
+        <article className="border border-[#dddddd] bg-white rounded-lg px-[clamp(0.9rem,2vw,1.875rem)] py-4 h-[36vh] w-full overflow-y-scroll article-scroll">
           <h3 className="text-base font-semibold text-[#18181B]">Activities</h3>
           <ActivityUpdate activity={activity} />
         </article>

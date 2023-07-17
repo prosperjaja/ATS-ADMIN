@@ -73,7 +73,7 @@ export const DashboardJobs = () => {
             </p>
           </div>
         </section>
-        <section className="py-6 h-[58.5vh] overflow-y-scroll article-scroll">
+        <section className="py-6 h-[60.5vh] overflow-y-scroll article-scroll">
           <JobListMap timeFrame={timeFrame} />
           <div className="flex items-center  hover:cursor-pointer ">
             <Link href={"/jobs"}>
