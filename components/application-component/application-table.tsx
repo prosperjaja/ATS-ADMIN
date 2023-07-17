@@ -191,11 +191,21 @@ export const ApplicationTable = () => {
     <div className=" rounded-lg bg-white">
       <Table className="h-100vh">
         <thead>
-          <tr>
+          <tr className="bg-[#F5F5F5]">
             <th style={{ padding: "18px" }} className="flex items-center gap-2">
               <Checkbox /> Name
             </th>
-            <th style={{ padding: "18px" }}>Role</th>
+            <th style={{ padding: "18px" }}>
+              <div className="flex items-center gap-1">
+                Role
+                <Image
+                  src={"/images/help.svg"}
+                  alt=""
+                  width={17}
+                  height={17}
+                />{" "}
+              </div>
+            </th>
             <th style={{ padding: "18px" }}>Email Address</th>
             <th style={{ padding: "18px" }}>Phone number</th>
             <th style={{ padding: "18px" }}>Date of Birth</th>
