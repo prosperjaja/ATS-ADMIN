@@ -1,6 +1,4 @@
-import { useDisclosure } from "@mantine/hooks";
 import { Modal, Group, Button, FileInput } from "@mantine/core";
-import FileUplaod from "../common/file-upload";
 import { useState } from "react";
 import { Gallery } from "iconsax-react";
 

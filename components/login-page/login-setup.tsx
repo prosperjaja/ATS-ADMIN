@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LUser } from "@/interface";
-import { error } from "console";
-import { headers } from "next/dist/client/components/headers";
 
 const initialValue = {
   email: "",
@@ -38,8 +35,8 @@ export const LoginSetUp = () => {
         setError(data?.error);
         return;
       }
+      toast.success("Login successful");
       setUser(data);
-      console.log(data);
       localStorage.setItem("my-user", JSON.stringify(data));
       push("/dashboard");
     } catch (error) {

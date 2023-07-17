@@ -86,6 +86,7 @@ export default function AddAdmin({ opened, close }: ModalType) {
         return;
       }
       setAdmin(data);
+      toast.success("Admin added successfully");
       setAdminCreated(true);
       setAdmin(initialValue);
       close();

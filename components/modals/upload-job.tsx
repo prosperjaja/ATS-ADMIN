@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useDisclosure } from "@mantine/hooks";
-
 import {
   Modal,
   Group,
@@ -9,9 +7,9 @@ import {
   Select,
   MultiSelect,
 } from "@mantine/core";
-import { AddButton } from "../common/add-button";
-import { createContext, Context } from "react";
 import { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 interface ModalType {
   opened: boolean;
@@ -119,9 +117,11 @@ export default function AddJob({ opened, close, id }: ModalType) {
         body: JSON.stringify(addJob),
       });
       const data = await res.json();
+      toast.success("New job created successfully");
       setAddjob(initialValue);
       close();
     } catch (error) {
+      toast.error("uh oh, wrong login details!");
       console.log(error);
     }
   };
@@ -137,6 +137,7 @@ export default function AddJob({ opened, close, id }: ModalType) {
       size={600}
       centered
     >
+      <ToastContainer toastClassName={"CustomToast"} />
       {/* Modal content */}
       <main className="flex flex-col gap-4 px-2">
         <div className="flex flex-col gap-2">
