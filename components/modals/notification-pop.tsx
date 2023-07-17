@@ -61,7 +61,7 @@ function NotificationPop() {
                   />
                   <div className="flex flex-col gap-1">
                     <h2 className="text-sm font-bold text-[#252735]">
-                      {items.action_type}
+                      {items.data}
                     </h2>
                     <p className="text-sm text-[#5E606A]">
                       by <span className="underline">{items.actor}</span>
