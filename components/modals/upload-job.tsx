@@ -120,7 +120,7 @@ export default function AddJob({ opened, close, id }: ModalType) {
       });
       const data = await res.json();
       setAddjob(initialValue);
-      console.log(data);
+      close();
     } catch (error) {
       console.log(error);
     }

@@ -88,7 +88,7 @@ export default function AddAdmin({ opened, close }: ModalType) {
       setAdmin(data);
       setAdminCreated(true);
       setAdmin(initialValue);
-      console.log(data);
+      close();
     } catch {
       toast.error("uh oh, wrong login details!");
       console.log("error-response", error);

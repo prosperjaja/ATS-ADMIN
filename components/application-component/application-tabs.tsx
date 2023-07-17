@@ -3,9 +3,6 @@ import { ApplicationTable } from "./application-table";
 import { useState, useEffect } from "react";
 import { ApplicationContdTable } from "./application-contd-table";
 
-const url =
-  "https://ats-admin-dashboard.onrender.com/api/job/application_filter?status=shortlisted";
-
 function ApplicationTabs() {
   const [tableContent, setTableContent] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -14,15 +11,15 @@ function ApplicationTabs() {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
     try {
-      const formData = new FormData();
-      formData.append("days", query);
-      const res = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      const res = await fetch(
+        `https://ats-admin-dashboard.onrender.com/api/job/application_filter?status=${query}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       setTableContent(data);
@@ -44,7 +41,7 @@ function ApplicationTabs() {
       <Tabs.List>
         <Tabs.Tab value="applications">All Applications (100)</Tabs.Tab>
         <Tabs.Tab value="pending">Pending</Tabs.Tab>
-        <Tabs.Tab value="shortlist">Shortlist</Tabs.Tab>
+        <Tabs.Tab value="shortlisted">Shortlist</Tabs.Tab>
         <Tabs.Tab value="interview">Interviews</Tabs.Tab>
         <Tabs.Tab value="hired">Hired</Tabs.Tab>
         <Tabs.Tab value="rejected">Rejected</Tabs.Tab>
@@ -69,7 +66,7 @@ function ApplicationTabs() {
       <Tabs.Panel
         className="px-8 h-[78vh] overflow-auto"
         onClick={() => setParams("shortlisted")}
-        value="shortlist"
+        value="shortlisted"
         pt="xs"
       >
         <ApplicationContdTable tableContent={tableContent} />
