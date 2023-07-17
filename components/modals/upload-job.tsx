@@ -109,7 +109,6 @@ export default function AddJob({ opened, close, id }: ModalType) {
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
     e.preventDefault();
     console.log(addJob);
-    // setAddjob(initialValue);
     try {
       const res = await fetch(url, {
         method,

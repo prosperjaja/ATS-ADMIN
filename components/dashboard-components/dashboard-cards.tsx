@@ -2,13 +2,6 @@ import { useGlobalContext } from "@/components/common/context";
 import clsx from "clsx";
 import React, { useContext } from "react";
 
-// const dataType: {
-//   id: number;
-//   applicants: string;
-//   figure: string;
-//   percentage: string;
-// }[];
-
 const data = [
   {
     id: 1,

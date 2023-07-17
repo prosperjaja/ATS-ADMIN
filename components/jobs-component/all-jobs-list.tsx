@@ -6,107 +6,6 @@ import { ModalsProvider, modals } from "@mantine/modals";
 import { useDisclosure } from "@mantine/hooks";
 import Delete from "../modals/delete";
 
-// const data = [
-//   {
-//     id: 1,
-//     img: "/images/java.svg",
-//     role: "Back-end Developer",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 2,
-//     img: "",
-//     role: "Product Manager",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 3,
-//     img: "/images/html.svg",
-//     role: "FrontEnd Developer",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 4,
-//     img: "",
-//     role: "Product Manager",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 5,
-//     img: "/images/java.svg",
-//     role: "Back-end Developer",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 6,
-//     img: "",
-//     role: "Product Manager",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-//   {
-//     id: 7,
-//     img: "/images/html.svg",
-//     role: "FrontEnd Developer",
-//     location: "/images/location.svg",
-//     choice: "Remote-Ibadan, Lagos Only",
-//     bcase: "/images/briefcase.svg",
-//     fulltime: "Full Time",
-//     application: "View Applications",
-//     assessment: "View Assessments",
-//     uploaded: "Uploaded 2days ago",
-//     pencil: "/images/green-pencil.svg",
-//     trash: "/images/trash.svg",
-//   },
-// ];
-
 interface JobsListProps {
   time?: string;
   children?: React.ReactNode;
@@ -114,7 +13,6 @@ interface JobsListProps {
   open?: () => void;
   setId?: React.Dispatch<React.SetStateAction<any>>;
   id;
-  // openModal: () => void;
 }
 
 export const AllJobsList = ({

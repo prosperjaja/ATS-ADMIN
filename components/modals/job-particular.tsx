@@ -5,12 +5,8 @@ function Notification({ opened, close }) {
   return (
     <>
       <Modal opened={opened} onClose={close} title="Authentication">
-        {/* Modal content */}
+        <div></div>
       </Modal>
-
-      {/* <Group position="center">
-        <Button onClick={open}>Open modal</Button>
-      </Group> */}
     </>
   );
 }

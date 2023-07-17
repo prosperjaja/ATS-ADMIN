@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { AddButton } from "../common/add-button";
 import Link from "next/link";
-// import { link } from "fs";
 import { Button, Group, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AuthModal from "../modals/upload-job";
@@ -176,7 +175,6 @@ export const Aside = () => {
           height={20}
         />
       </div>
-      {/* <hr className="border-1 border-[#dddddd]" /> */}
       <div className=" px-8">
         <AddButton onClick={open} text={"Upload Job"} />
       </div>
@@ -215,7 +213,6 @@ export const Aside = () => {
               const { id, img, text, action, link } = item;
               return (
                 <div className="flex items-center gap-3" key={id}>
-                  {/* <Image src={img} alt={text} width={20} height={20} /> */}
                   {link ? (
                     <Link
                       href={link}

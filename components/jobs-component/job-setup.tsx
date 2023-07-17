@@ -11,7 +11,6 @@ export const JobSetup = () => {
       <div className="border-b border-[#dddddd] py-[1.17rem]">
         <JobsHeader />
       </div>
-      {/* <AllJobs /> */}
       <JobTabs />
     </main>
   );

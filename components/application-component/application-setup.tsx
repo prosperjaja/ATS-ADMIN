@@ -12,7 +12,6 @@ export const ApplicationSetup = () => {
       </section>
       <BackToJobs />
       <section>
-        {/* <ApplicationTable /> */}
         <ApplicationTabs />
       </section>
     </main>

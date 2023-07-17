@@ -14,7 +14,6 @@ export const DashboardSetup = () => {
     }
   }, []);
 
-  // console.log(user);
   return (
     <section className="flex flex-col gap-2">
       <HeaderSetup

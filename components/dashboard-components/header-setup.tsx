@@ -58,7 +58,6 @@ export const HeaderSetup = ({
           </p>
         </div>
       </section>
-      {/* <Notification opened={opened} close={close} /> */}
     </div>
   );
 };

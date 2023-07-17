@@ -32,7 +32,6 @@ export const AdminActivityUpdate = () => {
   return (
     <section>
       {activity?.map((item) => {
-        // const { id, img, title, text, time } = item;
         return (
           <ul key={item.id} className="rounded-xl pt-6">
             <li className="flex items-end justify-between gap-4 border-b border-[#dddddd] pb-4">

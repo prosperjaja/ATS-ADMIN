@@ -1,59 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-// const data = [
-//   {
-//     id: 1,
-//     role: "FrontEnd Developer",
-//     admin: "Admin 22",
-//     view: "/images/eye.svg",
-//     number: "123",
-//     dots: "/images/dots-horizontal.svg",
-//     time: "2d ago",
-//   },
-//   {
-//     id: 2,
-//     role: "FrontEnd Developer",
-//     admin: "Admin 22",
-//     view: "/images/eye.svg",
-//     number: "123",
-//     dots: "/images/dots-horizontal.svg",
-//     time: "2d ago",
-//   },
-//   {
-//     id: 3,
-//     role: "FrontEnd Developer",
-//     admin: "Admin 22",
-//     view: "/images/eye.svg",
-//     number: "123",
-//     dots: "/images/dots-horizontal.svg",
-//     time: "2d ago",
-//   },
-//   {
-//     id: 4,
-//     role: "FrontEnd Developer",
-//     admin: "Admin 22",
-//     view: "/images/eye.svg",
-//     number: "123",
-//     dots: "/images/dots-horizontal.svg",
-//     time: "2d ago",
-//   },
-//   {
-//     id: 5,
-//     role: "FrontEnd Developer",
-//     admin: "Admin 22",
-//     view: "/images/eye.svg",
-//     number: "123",
-//     dots: "/images/dots-horizontal.svg",
-//     time: "2d ago",
-//   },
-// ];
-
 export const JobListMap = ({ timeFrame }) => {
   return (
     <section className=" px-2 flex flex-col gap-4">
       {timeFrame?.map((item) => {
-        // const { id, role, admin, view, number, dots, time } = item;
         return (
           <section
             key={item.id}

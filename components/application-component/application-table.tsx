@@ -171,51 +171,6 @@ export const ApplicationTable = () => {
     ApplicantsFetch();
   }, []);
 
-  // return (
-  //   // <main className="px-6 rounded-lg ">
-  //   //   <article className="bg-[#F9FAFB] py-2 px-6 flex items-start justify-between rounded-t-lg">
-  //   //     <div className="flex items-center gap-2">
-  //   //       <Checkbox />
-  //   //       <p>Name</p>
-  //   //     </div>
-  //   //     <div>
-  //   //       <p>Role</p>
-  //   //       {/* <Image src={'/'}/> */}
-  //   //     </div>
-  //   //     <div>Email address</div>
-  //   //     <div>Phone Number</div>
-  //   //     <div>Date of Birth</div>
-  //   //   </article>
-  //   //   <section className="bg-white px-6 h-[70vh] overflow-y-scroll article-scroll">
-  //   //     <article className="flex flex-col gap-3">
-  //   //       {totalApplicants?.map((item) => {
-  //   //         // const { id, name, role, email, phone, dob, actions } = item;
-  //   //         return (
-  //   //           <section
-  //   //             key={item.id}
-  //   //             className="bg-white flex items-center justify-between border-b border-[#F5F5F5] pb-3"
-  //   //           >
-  //   //             <div className="flex items-center gap-2">
-  //   //               <Checkbox />
-  //   //               <p className="bg-[rgba(225,137,28,0.10)] text-[#E1891C] p-2 rounded-lg">
-  //   //                 PB
-  //   //               </p>
-  //   //               <p>{item.applicant_name}</p>
-  //   //             </div>
-  //   //             <div>{item.job}</div>
-  //   //             <div>{item.applicant_email}</div>
-  //   //             <div>{item.applicant_phone_number}</div>
-  //   //             <div>{item.applicant_DOB}</div>
-  //   //             {/* <div>{actions}</div> */}
-  //   //           </section>
-  //   //         );
-  //   //       })}
-  //   //     </article>
-  //   //   </section>
-  //   // </main>
-
-  // );
-
   const rows = totalApplicants?.map((item) => (
     <tr style={{ padding: "16px" }} key={item.name} className="py-4">
       <td style={{ padding: "18px" }} className="flex items-center gap-2 py-4 ">

@@ -185,9 +185,6 @@ export default function AddAdmin({ opened, close }: ModalType) {
               />
             </div>
           </section>
-          {/* <section className="flex justify-center items-center">
-            <FileUplaod />
-          </section> */}
           <Button
             type="submit"
             styles={{

@@ -38,7 +38,6 @@ export const AdminFilter = () => {
       setIsLoading(false);
       setAdminList(data.results);
       setAdminCount(data.results.length);
-      // console.log(data);
     } catch (error) {
       console.log(error);
     }

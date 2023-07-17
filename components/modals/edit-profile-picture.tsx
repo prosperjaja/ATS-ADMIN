@@ -18,7 +18,6 @@ function EditProfilePicture({ opened, close }: ModalType) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(image)
     const token = JSON.parse(localStorage.getItem("my-user"))?.tokens?.access;
     try {
       const formData = new FormData();

@@ -7,11 +7,6 @@ import { useDisclosure } from "@mantine/hooks";
 import AddJob from "../modals/upload-job";
 import { UploadButton } from "../common/upload-button";
 import { useEffect, useState } from "react";
-// import {
-//   IconPhoto,
-//   IconMessageCircle,
-//   IconSettings,
-// } from "@tabler/icons-react";
 
 const url = "https://ats-admin-dashboard.onrender.com/api/job/job_list_create";
 

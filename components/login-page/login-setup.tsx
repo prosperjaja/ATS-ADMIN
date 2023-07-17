@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import API from "../../apis";
 import { LUser } from "@/interface";
 import { error } from "console";
 import { headers } from "next/dist/client/components/headers";

@@ -45,19 +45,7 @@ export const FilterList = ({ adminList }) => {
                     {item.permission_level[0].name}
                   </p>
                 </div>
-                {/* <button className="flex justify-center items-center mt-2">
-                  <Image
-                    src={"/images/trash.svg"}
-                    alt="remove"
-                    width={20}
-                    height={20}
-                    onClick={() => {
-                      setId(id);
-                      console.log(id);
-                      open();
-                    }}
-                  />
-                </button> */}
+
                 <AdminDelete opened={opened} close={close} id={id} />
               </section>
             );
