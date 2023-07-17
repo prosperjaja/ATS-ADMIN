@@ -5,6 +5,13 @@ import EditProfilePicture from "../modals/edit-profile-picture";
 
 export const AdminDisplayProfile = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [user, setUser] = useState({ first_name: "", profile_picture: "" });
+
+  useEffect(() => {
+    if (localStorage.getItem("my-user")) {
+      setUser(JSON.parse(localStorage.getItem("my-user")));
+    }
+  }, []);
 
   return (
     <section>
@@ -27,7 +34,7 @@ export const AdminDisplayProfile = () => {
         </div>
         <div>
           <h3 className="text-[#101828] text-[clamp(0.9rem,2vw,1.5rem)] font-semibold text-center">
-            Olivia Rhyne
+            {user.first_name}
           </h3>
           <p className="text-[#38CB89] text-base font-semibold text-center">
             Admin

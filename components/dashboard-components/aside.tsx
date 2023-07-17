@@ -251,7 +251,10 @@ export const Aside = () => {
               const { id, img, text, action } = item;
               return (
                 <div className="flex items-center gap-3" key={id}>
-                  <div onClick={action} className="text-[#E1891C]">
+                  <div
+                    onClick={action}
+                    className="text-[#E1891C] flex items-center gap-4"
+                  >
                     {img}
                     <p className="hover:text-[#E1891C] text-[1rem] text-[#4A4C58] font-semibold cursor-pointer">
                       {text}
