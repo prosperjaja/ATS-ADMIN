@@ -85,7 +85,7 @@ function ApplicationTabs() {
         value="hired"
         pt="xs"
       >
-        <ApplicationTable />
+        {/* <ApplicationTable /> */}
       </Tabs.Panel>
       <Tabs.Panel
         className="px-8 h-[78vh] overflow-auto"

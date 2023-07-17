@@ -31,7 +31,7 @@ function EditProfilePicture({ opened, close }: ModalType) {
       });
       const data = await res.json();
       setAdminProfile(data);
-      console.log(data);
+      close();
     } catch (error) {
       console.log(error);
     }
