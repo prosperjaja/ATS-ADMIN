@@ -49,6 +49,7 @@ const data = {
       data: labels.map(() => Math.floor(Math.random() * (1000 - 0 + 1)) + 0),
       borderColor: "#5cd49e",
       backgroundColor: "#f6f8ff",
+      lineTension: 0.3,
     },
   ],
 };
